@@ -2,6 +2,10 @@
 const port = 3000;
 const domain = "http://localhost:3000/";
 
+// 콘솔 clear
+process.stdout.write("\u001b[3J\u001b[2J\u001b[1J");
+console.clear();
+
 // 모듈 임포트
 const {
   unlink,
