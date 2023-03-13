@@ -142,25 +142,18 @@ app.param("filename", function (req, res, next, filename) {
 
 // 캡챠 이미지 보여주기
 app.get("/image/:filename", (req, res) => {
-  try {
-    const filename = req.params.filename;
+  const filename = req.params.filename;
 
-    const filepath = join(captchaDir, `${filename}.png`);
+  const filepath = join(captchaDir, `${filename}.png`);
 
-    if (existsSync(filepath)) {
-      // 이미지 파일이 존재한다면 해당 이미지 파일을 클라이언트에게 전송
-      res.sendFile(filepath);
-    } else {
-      // 이미지 파일이 존재하지 않는다면 404 에러 반환
-      res.status(404).json({
-        code: 404,
-        note: "캡챠 이미지가 3분이 지나 만료되었을 수 있습니다",
-      });
-    }
-  } catch (error) {
-    res.status(400).json({
-      code: 400,
-      note: "Bad Request",
+  if (existsSync(filepath)) {
+    // 이미지 파일이 존재한다면 해당 이미지 파일을 클라이언트에게 전송
+    res.sendFile(filepath);
+  } else {
+    // 이미지 파일이 존재하지 않는다면 404 에러 반환
+    res.status(404).json({
+      code: 404,
+      note: "캡챠 이미지가 3분이 지나 만료되었을 수 있습니다",
     });
   }
 });
