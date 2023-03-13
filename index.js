@@ -1,5 +1,6 @@
 // 설정
 const port = 3000;
+const domain = "http://localhost:3000/";
 
 // 모듈 임포트
 const {
@@ -91,10 +92,7 @@ app.get("/captcha", async (req, res) => {
   res.status(200).json({
     code: 200,
     note: "캡챠가 생성되었습니다. 3분후에 url이 만료됩니다",
-    url: `${req.protocol}://${req.headers.host}/image/${filename.replace(
-      ".png",
-      ""
-    )}`,
+    url: `${domain}image/${filename.replace(".png", "")}`,
     key: `${keyCode}`,
     todayCount: `${(count_find?.count || 0) + 1}`,
     delay: `${endDate - startDate}`,
