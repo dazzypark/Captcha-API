@@ -20,7 +20,7 @@ const helmet = require("helmet");
 const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
-const { Captcha } = require("captcha-canvas");
+const { CaptchaGenerator } = require("captcha-canvas");
 
 // 몽고DB 모델 임포트
 const count_Schema = require("./models/count");
@@ -59,18 +59,14 @@ if (!existsSync(captchaDir)) {
 app.get("/captcha", async (req, res) => {
   const startDate = new Date();
 
-  const canvas = new Captcha();
-  canvas.async = true;
-  canvas.addDecoy();
-  canvas.drawTrace();
-  canvas.drawCaptcha();
+  const canvas = new CaptchaGenerator();
 
   const randomEn = generateRandomString(6);
 
   const filename = `${randomEn}.png`;
   const keyCode = canvas.text;
   const filepath = join(captchaDir, filename);
-  const imageFile = await canvas.png;
+  const imageFile = await canvas.generate();
 
   writeFile(filepath, imageFile, "binary", function (err) {
     if (err) {
