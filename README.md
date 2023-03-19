@@ -13,3 +13,5 @@
 `3. env파일 수정`
 
 `4. 터미널에 node .`
+
+- 만약 2번과정에서 오류가 발생할 시 1번 과정을 git clone -b lts https://github.com/junseojjang/Captcha-API.git
