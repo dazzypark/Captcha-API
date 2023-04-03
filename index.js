@@ -20,6 +20,7 @@ const helmet = require("helmet");
 const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
+const errorhandler = require("errorhandler");
 const { Captcha } = require("captcha-canvas");
 
 // 몽고DB 모델 임포트
@@ -46,6 +47,7 @@ mongoose.connection.on("disconnected", () => {
 // express
 const app = express();
 app.use(helmet());
+app.use(errorhandler());
 app.disable("x-powered-by");
 
 const captchaDir = join(__dirname, "captcha");

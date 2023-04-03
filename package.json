@@ -12,6 +12,7 @@
   "dependencies": {
     "captcha-canvas": "^3.2.1",
     "dotenv": "^16.0.3",
+    "errorhandler": "^1.5.1",
     "express": "^4.18.2",
     "helmet": "^6.0.1",
     "mongoose": "^6.10.2"
