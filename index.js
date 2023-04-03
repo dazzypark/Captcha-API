@@ -15,6 +15,7 @@ const {
   readdirSync,
   statSync,
 } = require("fs");
+const errorhandler = require("errorhandler");
 const { join } = require("path");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
@@ -45,6 +46,7 @@ mongoose.connection.on("disconnected", () => {
 
 // express
 const app = express();
+app.use(errorhandler());
 app.use(helmet());
 app.disable("x-powered-by");
 
